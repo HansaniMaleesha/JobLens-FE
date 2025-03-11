@@ -12,7 +12,7 @@ import {
     Alert,
     Grid,
 } from "@mui/material";
-import { uploadCV } from "../api/api";
+import { uploadCV } from "../API/api.js";
 
 const Application = () => {
     const [formData, setFormData] = useState({
