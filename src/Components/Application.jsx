@@ -35,8 +35,8 @@ const Application = () => {
             setFormData({ ...formData, [e.target.name]: e.target.value });
         }
     };
-    const handleSubmit = async () => {
-        e.preventDefault();
+    const handleSubmit = async (e) => {
+        e.preventDefault(); // Fix: Now e is properly passed
         setLoading(true);
 
         const data = new FormData();
@@ -46,7 +46,7 @@ const Application = () => {
         data.append("cv", formData.cv);
 
         try {
-            const response = await uploadCV(data);
+            const response = await uploadCV(data); // Ensure `uploadCV` is properly defined
             setAlert({
                 open: true,
                 message: `CV Uploaded! Public URL: ${response.cv_url}`,
@@ -63,6 +63,7 @@ const Application = () => {
             setLoading(false);
         }
     };
+
 
     return (
         <Box
@@ -134,6 +135,7 @@ const Application = () => {
                                         color="primary"
                                         fullWidth
                                         disabled={loading}
+
                                     >
                                         {loading ? <CircularProgress size={24} /> : "Submit"}
                                     </Button>
